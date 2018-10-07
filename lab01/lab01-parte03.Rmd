@@ -38,13 +38,6 @@ total_abstencoes <- comparecimento_tidy_long %>%
             group_by(ano) %>% 
             summarise(total_abstencoes = sum(votos))
 
-total_abstencoes <- comparecimento_tidy_long %>%
-            drop_na() %>% 
-            filter(turno == 1) %>%
-            filter(situacao == "ABSTENÇÃO") %>%
-            group_by(ano) %>% 
-            summarise(total_abstencoes = sum(votos))
-
 total_abstencoes_complete <- comparecimento_tidy_long %>%
             drop_na() %>% 
             filter(turno == 1) %>%
@@ -72,6 +65,7 @@ data <-  merge(data, total_abstencoes, by="ano")
 data <-  merge(data, total_brancos, by="ano")
 data <-  merge(data, total_nulos, by="ano")
 
+data$brancos_nulos <- data$total_brancos + data$total_nulos
 data$porcentagem <- (data$total_abstencoes + data$total_brancos + data$total_nulos)/data$total_eleitores * 100
 data$porcentagem <- data$porcentagem %>% round(2)
 
