@@ -36,11 +36,37 @@ total_abstencoes <- comparecimento_tidy_long %>%
             group_by(ano) %>% 
             summarise(total_abstencoes = sum(votos))
 
-total <-  merge(total_eleitores, total_comparecimentos, by="ano")
-total <-  merge(total, total_abstencoes, by="ano")
+total_abstencoes <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "ABSTENÇÃO") %>%
+            group_by(ano) %>% 
+            summarise(total_abstencoes = sum(votos))
 
-write.csv(total_abstencoes, file = "total_abstencoes.csv")
-write.csv(total, file = "eleicoes_dataset.csv")
+
+total_brancos <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "VOTOS EM BRANCO") %>%
+            group_by(ano) %>% 
+            summarise(total_brancos = sum(votos))
+
+total_nulos <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "VOTOS NULOS") %>%
+            group_by(ano) %>% 
+            summarise(total_nulos = sum(votos))
+
+data <-  merge(total_eleitores, total_comparecimentos, by="ano")
+data <-  merge(data, total_abstencoes, by="ano")
+data <-  merge(data, total_brancos, by="ano")
+data <-  merge(data, total_nulos, by="ano")
+
+data$porcentagem <- (data$total_abstencoes + data$total_brancos + data$total_nulos)/data$total_eleitores * 100
+data$porcentagem <- data$porcentagem %>% round(2)
+
+write.csv(data, file = "eleicoes_dataset.csv")
 
 
 ```

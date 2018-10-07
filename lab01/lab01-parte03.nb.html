@@ -178,17 +178,74 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSAgbWVyZ2UodG90YWxfZWxlaXRvcmVzLCB0b3RhbF9jb21wYXJlY2ltZW50b3MsIHRvdGFsX2Fic3RlbmNvZXMsIGJ5PVwiYW5vXCIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>data &lt;-  merge(total_eleitores, total_comparecimentos, total_abstencoes, by=&quot;ano&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyZWFkcilcbmBgYCJ9 -->
+<pre class="r"><code>library(readr)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZml4LmJ5KGJ5LngsIHgpIDogXG4gICdieScgbXVzdCBzcGVjaWZ5IG9uZSBvciBtb3JlIGNvbHVtbnMgYXMgbnVtYmVycywgbmFtZXMgb3IgbG9naWNhbFxuIn0= -->
-<pre><code>Error in fix.by(by.x, x) : 
-  'by' must specify one or more columns as numbers, names or logical</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbmFtZXMoZnJhbWUpW25hbWVzKGZyYW1lKSA9PSBcInhcIl0gPC0gbmFtZSA6IFxuICBuYW1lcygpIGFwcGxpZWQgdG8gYSBub24tdmVjdG9yXG4ifQ== -->
+<pre><code>Error in names(frame)[names(frame) == &quot;x&quot;] &lt;- name : 
+  names() applied to a non-vector</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5zZXR3ZChcIn4vRG9jdW1lbnRzL3Zpcy9sYWIwMVwiKVxuY29tcGFyZWNpbWVudG9fdGlkeV9sb25nIDwtIHJlYWRfY3N2KFwifi9Eb2N1bWVudHMvZWxlaWNvZXMtc3VtYXJpby10aWR5L2RhdGEvY29tcGFyZWNpbWVudG9fdGlkeV9sb25nLmNzdlwiLCBcbiAgICBjb2xfdHlwZXMgPSBjb2xzKGFubyA9IGNvbF9pbnRlZ2VyKCksIFxuICAgICAgICBlbGVpY2FvID0gY29sX2NoYXJhY3RlcigpLCBlc3RhZG8gPSBjb2xfY2hhcmFjdGVyKCksIFxuICAgICAgICBzaXR1YWNhbyA9IGNvbF9jaGFyYWN0ZXIoKSwgdHVybm8gPSBjb2xfaW50ZWdlcigpLCBcbiAgICAgICAgdm90b3MgPSBjb2xfaW50ZWdlcigpKSlcbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+setwd(&quot;~/Documents/vis/lab01&quot;)
+comparecimento_tidy_long &lt;- read_csv(&quot;~/Documents/eleicoes-sumario-tidy/data/comparecimento_tidy_long.csv&quot;, 
+    col_types = cols(ano = col_integer(), 
+        eleicao = col_character(), estado = col_character(), 
+        situacao = col_character(), turno = col_integer(), 
+        votos = col_integer()))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiMiBwYXJzaW5nIGZhaWx1cmVzLlxucm93ICMgQSB0aWJibGU6IDIgeCA1IGNvbCAgICAgcm93IGNvbCAgIGV4cGVjdGVkICAgICAgICAgICAgICBhY3R1YWwgZmlsZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4cGVjdGVkICAgPGludD4gPGNocj4gPGNocj4gICAgICAgICAgICAgICAgIDxjaHI+ICA8Y2hyPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYWN0dWFsIDEgICA2MDggdm90b3Mgbm8gdHJhaWxpbmcgY2hhcmFjdGXigKYgwqAgICAgICAnfi9Eb2N1bWVudHMvZWxlaWNvZXMtc3VtYXJpby10aWR5L2RhdGEvY29tcGFyZWNpbWVudG9fdGlkeeKApiBmaWxlIDIgICA2MzYgdm90b3Mgbm8gdHJhaWxpbmcgY2hhcmFjdGXigKYgwqAgICAgICAnfi9Eb2N1bWVudHMvZWxlaWNvZXMtc3VtYXJpby10aWR5L2RhdGEvY29tcGFyZWNpbWVudG9fdGlkeeKAplxuIn0= -->
+<pre><code>2 parsing failures.
+row # A tibble: 2 x 5 col     row col   expected              actual file                                                         expected   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;chr&gt;  &lt;chr&gt;                                                        actual 1   608 votos no trailing characte…        '~/Documents/eleicoes-sumario-tidy/data/comparecimento_tidy… file 2   636 votos no trailing characte…        '~/Documents/eleicoes-sumario-tidy/data/comparecimento_tidy…</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudG90YWxfZWxlaXRvcmVzIDwtIGNvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZyAlPiVcbiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgXG4gICAgICAgICAgICBmaWx0ZXIodHVybm8gPT0gMSkgJT4lXG4gICAgICAgICAgICBmaWx0ZXIoc2l0dWFjYW8gPT0gXCJDT01QQVJFQ0lNRU5UT1wiIHwgc2l0dWFjYW8gPT0gXCJBQlNURU7Dh8ODT1wiKSAlPiUgXG4gICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSBcbiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9lbGVpdG9yZXNfcG9yX2FubyA9IHN1bSh2b3RvcykpXG50b3RhbF9jb21wYXJlY2ltZW50b3MgPC0gY29tcGFyZWNpbWVudG9fdGlkeV9sb25nICU+JVxuICAgICAgICAgICAgZHJvcF9uYSgpICU+JSBcbiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiVcbiAgICAgICAgICAgIGZpbHRlcihzaXR1YWNhbyA9PSBcIkNPTVBBUkVDSU1FTlRPXCIpICU+JVxuICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgXG4gICAgICAgICAgICBzdW1tYXJpc2UodG90YWxfY29tcGFyZWNpbWVudG9zID0gc3VtKHZvdG9zKSlcbnRvdGFsX2Fic3RlbmNvZXMgPC0gY29tcGFyZWNpbWVudG9fdGlkeV9sb25nICU+JVxuICAgICAgICAgICAgZHJvcF9uYSgpICU+JSBcbiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiVcbiAgICAgICAgICAgIGZpbHRlcihzaXR1YWNhbyA9PSBcIkFCU1RFTsOHw4NPXCIpICU+JVxuICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgXG4gICAgICAgICAgICBzdW1tYXJpc2UodG90YWxfYWJzdGVuY29lcyA9IHN1bSh2b3RvcykpXG50b3RhbF9hYnN0ZW5jb2VzIDwtIGNvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZyAlPiVcbiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgXG4gICAgICAgICAgICBmaWx0ZXIodHVybm8gPT0gMSkgJT4lXG4gICAgICAgICAgICBmaWx0ZXIoc2l0dWFjYW8gPT0gXCJBQlNURU7Dh8ODT1wiKSAlPiVcbiAgICAgICAgICAgIGdyb3VwX2J5KGFubykgJT4lIFxuICAgICAgICAgICAgc3VtbWFyaXNlKHRvdGFsX2Fic3RlbmNvZXMgPSBzdW0odm90b3MpKVxudG90YWxfYnJhbmNvcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lXG4gICAgICAgICAgICBkcm9wX25hKCkgJT4lIFxuICAgICAgICAgICAgZmlsdGVyKHR1cm5vID09IDEpICU+JVxuICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09IFwiVk9UT1MgRU0gQlJBTkNPXCIpICU+JVxuICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgXG4gICAgICAgICAgICBzdW1tYXJpc2UodG90YWxfYnJhbmNvcyA9IHN1bSh2b3RvcykpXG50b3RhbF9udWxvcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lXG4gICAgICAgICAgICBkcm9wX25hKCkgJT4lIFxuICAgICAgICAgICAgZmlsdGVyKHR1cm5vID09IDEpICU+JVxuICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09IFwiVk9UT1MgTlVMT1NcIikgJT4lXG4gICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSBcbiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9udWxvcyA9IHN1bSh2b3RvcykpXG5kYXRhIDwtICBtZXJnZSh0b3RhbF9lbGVpdG9yZXMsIHRvdGFsX2NvbXBhcmVjaW1lbnRvcywgYnk9XCJhbm9cIilcbmRhdGEgPC0gIG1lcmdlKGRhdGEsIHRvdGFsX2Fic3RlbmNvZXMsIGJ5PVwiYW5vXCIpXG5kYXRhIDwtICBtZXJnZShkYXRhLCB0b3RhbF9icmFuY29zLCBieT1cImFub1wiKVxuZGF0YSA8LSAgbWVyZ2UoZGF0YSwgdG90YWxfbnVsb3MsIGJ5PVwiYW5vXCIpXG5kYXRhJHBvcmNlbnRhZ2VtIDwtIChkYXRhJHRvdGFsX2Fic3RlbmNvZXMgKyBkYXRhJHRvdGFsX2JyYW5jb3MgKyBkYXRhJHRvdGFsX251bG9zKS9kYXRhJHRvdGFsX2VsZWl0b3JlcyAqIDEwMFxuZGF0YSRwb3JjZW50YWdlbSA8LSBkYXRhJHBvcmNlbnRhZ2VtICU+JSByb3VuZCgyKVxud3JpdGUuY3N2KGRhdGEsIGZpbGUgPSBcImVsZWljb2VzX2RhdGFzZXQuY3N2XCIpXG5gYGAifQ== -->
+<pre class="r"><code>total_eleitores &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;COMPARECIMENTO&quot; | situacao == &quot;ABSTENÇÃO&quot;) %&gt;% 
+            group_by(ano) %&gt;% 
+            summarise(total_eleitores_por_ano = sum(votos))
+total_comparecimentos &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;COMPARECIMENTO&quot;) %&gt;%
+            group_by(ano) %&gt;% 
+            summarise(total_comparecimentos = sum(votos))
+total_abstencoes &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;ABSTENÇÃO&quot;) %&gt;%
+            group_by(ano) %&gt;% 
+            summarise(total_abstencoes = sum(votos))
+total_abstencoes &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;ABSTENÇÃO&quot;) %&gt;%
+            group_by(ano) %&gt;% 
+            summarise(total_abstencoes = sum(votos))
+total_brancos &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;VOTOS EM BRANCO&quot;) %&gt;%
+            group_by(ano) %&gt;% 
+            summarise(total_brancos = sum(votos))
+total_nulos &lt;- comparecimento_tidy_long %&gt;%
+            drop_na() %&gt;% 
+            filter(turno == 1) %&gt;%
+            filter(situacao == &quot;VOTOS NULOS&quot;) %&gt;%
+            group_by(ano) %&gt;% 
+            summarise(total_nulos = sum(votos))
+data &lt;-  merge(total_eleitores, total_comparecimentos, by=&quot;ano&quot;)
+data &lt;-  merge(data, total_abstencoes, by=&quot;ano&quot;)
+data &lt;-  merge(data, total_brancos, by=&quot;ano&quot;)
+data &lt;-  merge(data, total_nulos, by=&quot;ano&quot;)
+data$porcentagem &lt;- (data$total_abstencoes + data$total_brancos + data$total_nulos)/data$total_eleitores * 100
+data$porcentagem &lt;- data$porcentagem %&gt;% round(2)
+write.csv(data, file = &quot;eleicoes_dataset.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkocmVhZHIpCmxpYnJhcnkodGlkeXZlcnNlKQoKc2V0d2QoIn4vRG9jdW1lbnRzL3Zpcy9sYWIwMSIpCgpjb21wYXJlY2ltZW50b190aWR5X2xvbmcgPC0gcmVhZF9jc3YoIn4vRG9jdW1lbnRzL2VsZWljb2VzLXN1bWFyaW8tdGlkeS9kYXRhL2NvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZy5jc3YiLCAKICAgIGNvbF90eXBlcyA9IGNvbHMoYW5vID0gY29sX2ludGVnZXIoKSwgCiAgICAgICAgZWxlaWNhbyA9IGNvbF9jaGFyYWN0ZXIoKSwgZXN0YWRvID0gY29sX2NoYXJhY3RlcigpLCAKICAgICAgICBzaXR1YWNhbyA9IGNvbF9jaGFyYWN0ZXIoKSwgdHVybm8gPSBjb2xfaW50ZWdlcigpLCAKICAgICAgICB2b3RvcyA9IGNvbF9pbnRlZ2VyKCkpKQoKdG90YWxfZWxlaXRvcmVzIDwtIGNvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZyAlPiUKICAgICAgICAgICAgZHJvcF9uYSgpICU+JSAKICAgICAgICAgICAgZmlsdGVyKHR1cm5vID09IDEpICU+JQogICAgICAgICAgICBmaWx0ZXIoc2l0dWFjYW8gPT0gIkNPTVBBUkVDSU1FTlRPIiB8IHNpdHVhY2FvID09ICJBQlNURU7Dh8ODTyIpICU+JSAKICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgCiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9lbGVpdG9yZXNfcG9yX2FubyA9IHN1bSh2b3RvcykpCgp0b3RhbF9jb21wYXJlY2ltZW50b3MgPC0gY29tcGFyZWNpbWVudG9fdGlkeV9sb25nICU+JQogICAgICAgICAgICBkcm9wX25hKCkgJT4lIAogICAgICAgICAgICBmaWx0ZXIodHVybm8gPT0gMSkgJT4lCiAgICAgICAgICAgIGZpbHRlcihzaXR1YWNhbyA9PSAiQ09NUEFSRUNJTUVOVE8iKSAlPiUKICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgCiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9jb21wYXJlY2ltZW50b3MgPSBzdW0odm90b3MpKQoKdG90YWxfYWJzdGVuY29lcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lCiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgCiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiUKICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09ICJBQlNURU7Dh8ODTyIpICU+JQogICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSAKICAgICAgICAgICAgc3VtbWFyaXNlKHRvdGFsX2Fic3RlbmNvZXMgPSBzdW0odm90b3MpKQoKdG90YWwgPC0gIG1lcmdlKHRvdGFsX2VsZWl0b3JlcywgdG90YWxfY29tcGFyZWNpbWVudG9zLCBieT0iYW5vIikKdG90YWwgPC0gIG1lcmdlKHRvdGFsLCB0b3RhbF9hYnN0ZW5jb2VzLCBieT0iYW5vIikKCndyaXRlLmNzdih0b3RhbF9hYnN0ZW5jb2VzLCBmaWxlID0gInRvdGFsX2Fic3RlbmNvZXMuY3N2IikKd3JpdGUuY3N2KHRvdGFsLCBmaWxlID0gImVsZWljb2VzX2RhdGFzZXQuY3N2IikKCgpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkocmVhZHIpCmxpYnJhcnkodGlkeXZlcnNlKQoKc2V0d2QoIn4vRG9jdW1lbnRzL3Zpcy9sYWIwMSIpCgpjb21wYXJlY2ltZW50b190aWR5X2xvbmcgPC0gcmVhZF9jc3YoIn4vRG9jdW1lbnRzL2VsZWljb2VzLXN1bWFyaW8tdGlkeS9kYXRhL2NvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZy5jc3YiLCAKICAgIGNvbF90eXBlcyA9IGNvbHMoYW5vID0gY29sX2ludGVnZXIoKSwgCiAgICAgICAgZWxlaWNhbyA9IGNvbF9jaGFyYWN0ZXIoKSwgZXN0YWRvID0gY29sX2NoYXJhY3RlcigpLCAKICAgICAgICBzaXR1YWNhbyA9IGNvbF9jaGFyYWN0ZXIoKSwgdHVybm8gPSBjb2xfaW50ZWdlcigpLCAKICAgICAgICB2b3RvcyA9IGNvbF9pbnRlZ2VyKCkpKQoKdG90YWxfZWxlaXRvcmVzIDwtIGNvbXBhcmVjaW1lbnRvX3RpZHlfbG9uZyAlPiUKICAgICAgICAgICAgZHJvcF9uYSgpICU+JSAKICAgICAgICAgICAgZmlsdGVyKHR1cm5vID09IDEpICU+JQogICAgICAgICAgICBmaWx0ZXIoc2l0dWFjYW8gPT0gIkNPTVBBUkVDSU1FTlRPIiB8IHNpdHVhY2FvID09ICJBQlNURU7Dh8ODTyIpICU+JSAKICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgCiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9lbGVpdG9yZXNfcG9yX2FubyA9IHN1bSh2b3RvcykpCgp0b3RhbF9jb21wYXJlY2ltZW50b3MgPC0gY29tcGFyZWNpbWVudG9fdGlkeV9sb25nICU+JQogICAgICAgICAgICBkcm9wX25hKCkgJT4lIAogICAgICAgICAgICBmaWx0ZXIodHVybm8gPT0gMSkgJT4lCiAgICAgICAgICAgIGZpbHRlcihzaXR1YWNhbyA9PSAiQ09NUEFSRUNJTUVOVE8iKSAlPiUKICAgICAgICAgICAgZ3JvdXBfYnkoYW5vKSAlPiUgCiAgICAgICAgICAgIHN1bW1hcmlzZSh0b3RhbF9jb21wYXJlY2ltZW50b3MgPSBzdW0odm90b3MpKQoKdG90YWxfYWJzdGVuY29lcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lCiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgCiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiUKICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09ICJBQlNURU7Dh8ODTyIpICU+JQogICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSAKICAgICAgICAgICAgc3VtbWFyaXNlKHRvdGFsX2Fic3RlbmNvZXMgPSBzdW0odm90b3MpKQoKdG90YWxfYWJzdGVuY29lcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lCiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgCiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiUKICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09ICJBQlNURU7Dh8ODTyIpICU+JQogICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSAKICAgICAgICAgICAgc3VtbWFyaXNlKHRvdGFsX2Fic3RlbmNvZXMgPSBzdW0odm90b3MpKQoKCnRvdGFsX2JyYW5jb3MgPC0gY29tcGFyZWNpbWVudG9fdGlkeV9sb25nICU+JQogICAgICAgICAgICBkcm9wX25hKCkgJT4lIAogICAgICAgICAgICBmaWx0ZXIodHVybm8gPT0gMSkgJT4lCiAgICAgICAgICAgIGZpbHRlcihzaXR1YWNhbyA9PSAiVk9UT1MgRU0gQlJBTkNPIikgJT4lCiAgICAgICAgICAgIGdyb3VwX2J5KGFubykgJT4lIAogICAgICAgICAgICBzdW1tYXJpc2UodG90YWxfYnJhbmNvcyA9IHN1bSh2b3RvcykpCgp0b3RhbF9udWxvcyA8LSBjb21wYXJlY2ltZW50b190aWR5X2xvbmcgJT4lCiAgICAgICAgICAgIGRyb3BfbmEoKSAlPiUgCiAgICAgICAgICAgIGZpbHRlcih0dXJubyA9PSAxKSAlPiUKICAgICAgICAgICAgZmlsdGVyKHNpdHVhY2FvID09ICJWT1RPUyBOVUxPUyIpICU+JQogICAgICAgICAgICBncm91cF9ieShhbm8pICU+JSAKICAgICAgICAgICAgc3VtbWFyaXNlKHRvdGFsX251bG9zID0gc3VtKHZvdG9zKSkKCmRhdGEgPC0gIG1lcmdlKHRvdGFsX2VsZWl0b3JlcywgdG90YWxfY29tcGFyZWNpbWVudG9zLCBieT0iYW5vIikKZGF0YSA8LSAgbWVyZ2UoZGF0YSwgdG90YWxfYWJzdGVuY29lcywgYnk9ImFubyIpCmRhdGEgPC0gIG1lcmdlKGRhdGEsIHRvdGFsX2JyYW5jb3MsIGJ5PSJhbm8iKQpkYXRhIDwtICBtZXJnZShkYXRhLCB0b3RhbF9udWxvcywgYnk9ImFubyIpCgpkYXRhJHBvcmNlbnRhZ2VtIDwtIChkYXRhJHRvdGFsX2Fic3RlbmNvZXMgKyBkYXRhJHRvdGFsX2JyYW5jb3MgKyBkYXRhJHRvdGFsX251bG9zKS9kYXRhJHRvdGFsX2VsZWl0b3JlcyAqIDEwMApkYXRhJHBvcmNlbnRhZ2VtIDwtIGRhdGEkcG9yY2VudGFnZW0gJT4lIHJvdW5kKDIpCgp3cml0ZS5jc3YoZGF0YSwgZmlsZSA9ICJlbGVpY29lc19kYXRhc2V0LmNzdiIpCgoKYGBgCg==</div>
 
 
 
