@@ -65,7 +65,7 @@ data <-  merge(data, total_abstencoes, by="ano")
 data <-  merge(data, total_brancos, by="ano")
 data <-  merge(data, total_nulos, by="ano")
 
-data$brancos_nulos <- data$total_brancos + data$total_nulos
+data$brancos_nulos <- as.integer(data$total_brancos + data$total_nulos)
 data$porcentagem <- (data$total_abstencoes + data$total_brancos + data$total_nulos)/data$total_eleitores * 100
 data$porcentagem <- data$porcentagem %>% round(2)
 
