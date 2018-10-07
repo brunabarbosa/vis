@@ -15,14 +15,32 @@ comparecimento_tidy_long <- read_csv("~/Documents/eleicoes-sumario-tidy/data/com
         situacao = col_character(), turno = col_integer(), 
         votos = col_integer()))
 
+total_eleitores <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "COMPARECIMENTO" | situacao == "ABSTENÇÃO") %>% 
+            group_by(ano) %>% 
+            summarise(total_eleitores_por_ano = sum(votos))
+
+total_comparecimentos <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "COMPARECIMENTO") %>%
+            group_by(ano) %>% 
+            summarise(total_comparecimentos = sum(votos))
+
 total_abstencoes <- comparecimento_tidy_long %>%
             drop_na() %>% 
             filter(turno == 1) %>%
             filter(situacao == "ABSTENÇÃO") %>%
             group_by(ano) %>% 
-            mutate(total_eleitores = sum(votos))
+            summarise(total_abstencoes = sum(votos))
+
+total <-  merge(total_eleitores, total_comparecimentos, by="ano")
+total <-  merge(total, total_abstencoes, by="ano")
 
 write.csv(total_abstencoes, file = "total_abstencoes.csv")
+write.csv(total, file = "eleicoes_dataset.csv")
 
 
 ```
