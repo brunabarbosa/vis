@@ -1,0 +1,28 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(readr)
+library(tidyverse)
+
+setwd("~/Documents/vis/lab01")
+
+comparecimento_tidy_long <- read_csv("~/Documents/eleicoes-sumario-tidy/data/comparecimento_tidy_long.csv", 
+    col_types = cols(ano = col_integer(), 
+        eleicao = col_character(), estado = col_character(), 
+        situacao = col_character(), turno = col_integer(), 
+        votos = col_integer()))
+
+total_abstencoes <- comparecimento_tidy_long %>%
+            drop_na() %>% 
+            filter(turno == 1) %>%
+            filter(situacao == "ABSTENÇÃO") %>%
+            group_by(ano) %>% 
+            mutate(total_eleitores = sum(votos))
+
+write.csv(total_abstencoes, file = "total_abstencoes.csv")
+
+
+```
