@@ -24,7 +24,9 @@ validos_vs_demais <- read_csv("~/Documents/vis/lab01/validos_vs_demais.csv",
 
 validos_vs_demais <- validos_vs_demais %>%
         drop_na() %>% 
-        filter(situacao == "VALIDOS")
+        filter(situacao == "VALIDOS") %>% 
+        group_by(ano) %>% 
+        summarise(prop = median(proporcao))
         
 
 total_eleitores <- comparecimento_tidy_long %>%
