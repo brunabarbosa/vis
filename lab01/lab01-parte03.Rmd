@@ -15,7 +15,17 @@ comparecimento_tidy_long <- read_csv("~/Documents/eleicoes-sumario-tidy/data/com
         situacao = col_character(), turno = col_integer(), 
         votos = col_integer()))
 
+validos_vs_demais <- read_csv("~/Documents/vis/lab01/validos_vs_demais.csv", 
+    col_types = cols(ano = col_integer(), 
+        estado = col_character(), proporcao = col_double(), 
+        quantidade = col_integer(), situacao = col_character(), 
+        turno = col_integer()))
 
+
+validos_vs_demais <- validos_vs_demais %>%
+        drop_na() %>% 
+        filter(situacao == "VALIDOS")
+        
 
 total_eleitores <- comparecimento_tidy_long %>%
             drop_na() %>% 
@@ -71,6 +81,10 @@ data$porcentagem <- data$porcentagem %>% round(2)
 
 write.csv(total_abstencoes_complete, file = "total_abstencoes_complete.csv")
 write.csv(data, file = "eleicoes_dataset.csv")
+write.csv(validos_vs_demais, file = "validos_vs_demais.csv")
+
+
+
 
 
 ```
