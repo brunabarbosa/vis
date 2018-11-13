@@ -1,0 +1,19 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+
+setwd("~/vis/lab02")
+
+enade_2017_ufcg_str <- read_csv("data/enade_2017_ufcg-str.csv")
+
+colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual a renda total de sua família, incluindo seus rendimentos?"] <- "renda"
+
+enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
+  mutate(renda = ifelse(renda == "Até 1,5 salário mínimo (até R$ 1405,50).", "A", renda)) %>% 
+  mutate(renda = ifelse(renda == "De 1,5 a 3 salários mínimos (R$ 1405,51 a R$ 2.811,00).", "B", renda))
+```
+
