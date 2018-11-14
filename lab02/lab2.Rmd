@@ -23,6 +23,19 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(renda = ifelse(renda == "De 10 a 30 salários mínimos (R$ 9370,01 a R$ 28.110,00).", "F", renda)) %>% 
   mutate(renda = ifelse(renda == "Acima de 30 salários mínimos (mais de R$ 28110,00).", "G", renda))
 
+enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "História (Licenciatura)", "Historia (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Matemática (Licenciatura)", "Matematica (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Química (Licenciatura)", "Quimica (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Música (Licenciatura)", "Musica (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Letras-Português (Licenciatura)", "Letras-Portugues (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Sociais (Licenciatura)", "Ciencias Sociais (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Biológicas (Licenciatura)", "Ciencias Biológicas (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Física (Licenciatura)", "Fisica (Licenciatura)", NOME_CURSO))
+ 
+unique(enade_2017_ufcg_str$NOME_CURSO)
+
+
 write.csv(enade_2017_ufcg_str, file = "enade_2017_ufcg_str.csv")
 
 ```
