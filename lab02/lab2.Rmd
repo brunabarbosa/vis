@@ -46,11 +46,32 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(area_curso = ifelse(NOME_CURSO == "Geografia (Licenciatura)", "HUMANAS", area_curso)) %>%
   mutate(area_curso = ifelse(NOME_CURSO == "Pedagogia (Licenciatura)", "HUMANAS", area_curso)) %>%
   mutate(area_curso = ifelse(NOME_CURSO == "Filosofia (Licenciatura)", "HUMANAS", area_curso))
- 
-unique(enade_2017_ufcg_str$area_curso)
 
+
+enade_2017_ufcg_str <- enade_2017_ufcg_str %>% 
+  group_by(area_curso) %>% 
+  mutate(totalAreaCurso=n() + 1)
+  
+enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
+    group_by(area_curso, renda) %>%
+    mutate(prop=n()/totalAreaCurso)
+
+exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>%        select(area_curso, renda, prop)
+
+exatas <- unique(exatas)
+
+humanas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "HUMANAS") %>%        select(area_curso, renda, prop)
+
+humanas <- unique(humanas)
+
+saude <- enade_2017_ufcg_str_prop %>% filter(area_curso == "SAUDE") %>%        select(area_curso, renda, prop)
+
+saude <- unique(saude)
+
+cursos_renda_prop <- rbind(exatas, humanas, saude)
 
 write.csv(enade_2017_ufcg_str, file = "enade_2017_ufcg_str.csv")
+write.csv(cursos_renda_prop, file = "cursos_renda_prop.csv")
 
 ```
 
