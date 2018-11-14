@@ -33,7 +33,21 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Biológicas (Licenciatura)", "Ciencias Biologicas (Licenciatura)", NOME_CURSO)) %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Física (Licenciatura)", "Fisica (Licenciatura)", NOME_CURSO))
  
-unique(enade_2017_ufcg_str$NOME_CURSO)
+enade_2017_ufcg_str$area_curso <- enade_2017_ufcg_str$NOME_CURSO
+enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Historia (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Matematica (Licenciatura)", "EXATAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Quimica (Licenciatura)", "EXATAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Musica (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Letras-Portugues (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Ciencias Sociais (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Ciencias Biologicas (Licenciatura)", "SAUDE", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Fisica (Licenciatura)", "EXATAS", area_curso)) %>% 
+  mutate(area_curso = ifelse(NOME_CURSO == "Geografia (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Pedagogia (Licenciatura)", "HUMANAS", area_curso)) %>%
+  mutate(area_curso = ifelse(NOME_CURSO == "Filosofia (Licenciatura)", "HUMANAS", area_curso))
+ 
+unique(enade_2017_ufcg_str$area_curso)
 
 
 write.csv(enade_2017_ufcg_str, file = "enade_2017_ufcg_str.csv")
