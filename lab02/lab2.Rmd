@@ -12,6 +12,15 @@ enade_2017_ufcg_str <- read_csv("data/enade_2017_ufcg-str.csv")
 
 colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual a renda total de sua família, incluindo seus rendimentos?"] <- "renda"
 
+unique(enade_2017_ufcg_str$`Qual alternativa a seguir melhor descreve sua situação financeira (incluindo bolsas)?`)
+
+unique(enade_2017_ufcg_str$`Qual alternativa a seguir melhor descreve sua situação de trabalho (exceto estágio ou bolsas)?`)
+
+colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual alternativa a seguir melhor descreve sua situação financeira (incluindo bolsas)?"] <- "situacao_financeira"
+
+
+colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual alternativa a seguir melhor descreve sua situação de trabalho (exceto estágio ou bolsas)?"] <- "situacao_trabalho"
+
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>% drop_na()
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
