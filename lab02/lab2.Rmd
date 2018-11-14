@@ -21,7 +21,7 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(renda = ifelse(renda == "De 4,5 a 6 salários mínimos (R$ 4216,51 a R$ 5.622,00).", "D - (R$ 4.216,51 a R$ 5.622,00)", renda)) %>% 
   mutate(renda = ifelse(renda == "De 6 a 10 salários mínimos (R$ 5 622,01 a R$ 9.370,00).", "E - (R$ 5.622,01 a R$ 9.370,00)", renda)) %>% 
   mutate(renda = ifelse(renda == "De 10 a 30 salários mínimos (R$ 9370,01 a R$ 28.110,00).", "F - (R$ 9.370,01 a R$ 28.110,00)", renda)) %>% 
-  mutate(renda = ifelse(renda == "Acima de 30 salários mínimos (mais de R$ 28110,00).", "G - (mais de R$ 28110,00)", renda))
+  mutate(renda = ifelse(renda == "Acima de 30 salários mínimos (mais de R$ 28110,00).", "G - (mais de R$ 2.8110,00)", renda))
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "História (Licenciatura)", "Historia (Licenciatura)", NOME_CURSO)) %>%
