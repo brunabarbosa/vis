@@ -30,7 +30,7 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Música (Licenciatura)", "Musica (Licenciatura)", NOME_CURSO)) %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Letras-Português (Licenciatura)", "Letras-Portugues (Licenciatura)", NOME_CURSO)) %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Sociais (Licenciatura)", "Ciencias Sociais (Licenciatura)", NOME_CURSO)) %>%
-  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Biológicas (Licenciatura)", "Ciencias Biológicas (Licenciatura)", NOME_CURSO)) %>%
+  mutate(NOME_CURSO = ifelse(NOME_CURSO == "Ciências Biológicas (Licenciatura)", "Ciencias Biologicas (Licenciatura)", NOME_CURSO)) %>%
   mutate(NOME_CURSO = ifelse(NOME_CURSO == "Física (Licenciatura)", "Fisica (Licenciatura)", NOME_CURSO))
  
 unique(enade_2017_ufcg_str$NOME_CURSO)
