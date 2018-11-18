@@ -92,7 +92,8 @@ enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
 
 enade_2017_ufcg_str_prop <- enade_2017_ufcg_str_prop %>%
     group_by(renda, horas_estudo) %>%
-    mutate(propRenda=(n()/totaRenda * 100))
+    mutate(propRenda=(format(round(n()/totaRenda * 100, 2), nsmall = 2)
+))
 
 exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>% select(area_curso, renda, prop)
 
