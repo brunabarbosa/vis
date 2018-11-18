@@ -6,9 +6,8 @@ output: html_notebook
 ```{r}
 library(tidyverse)
 
-setwd("~/vis/lab02")
-
-enade_2017_ufcg_str <- read_csv("data/enade_2017_ufcg-str.csv")
+enade_2017_ufcg_str <- read_csv("enade_2017_ufcg_str.csv", 
+    locale = locale(encoding = "ISO-8859-1"))
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>% drop_na()
 
 colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual a renda total de sua família, incluindo seus rendimentos?"] <- "renda"
@@ -64,7 +63,7 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>% 
   group_by(area_curso) %>% 
-  mutate(totalAreaCurso=n() + 1)
+  mutate(totalAreaCurso=n())
   
 enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
     group_by(area_curso, renda) %>%
@@ -74,11 +73,11 @@ exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>%       
 
 exatas <- unique(exatas)
 
-humanas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "HUMANAS") %>%        select(area_curso, renda, prop)
+humanas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "HUMANAS") %>% select(area_curso, renda, prop)
 
 humanas <- unique(humanas)
 
-saude <- enade_2017_ufcg_str_prop %>% filter(area_curso == "SAUDE") %>%        select(area_curso, renda, prop)
+saude <- enade_2017_ufcg_str_prop %>% filter(area_curso == "SAUDE") %>% select(area_curso, renda, prop)
 
 saude <- unique(saude)
 
