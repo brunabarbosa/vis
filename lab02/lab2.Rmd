@@ -22,8 +22,11 @@ colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Qual alternativa a
 colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Quantas horas por semana, aproximadamente, você dedicou aos estudos, excetuando as horas de aula?"] <- "horas_estudo"
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "De uma a três", "De uma a tres", horas_estudo)) %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "Nenhuma, apenas assisto às aulas", "Nenhuma", horas_estudo))
+  mutate(horas_estudo = ifelse(horas_estudo == "De uma a tres", 1, horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "De quatro a sete", 4, horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "De oito a doze", 8, horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "Mais de doze", 12, horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "Nenhuma", 0, horas_estudo))
 
 unique(enade_2017_ufcg_str$horas_estudo)
 
@@ -69,7 +72,7 @@ enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
     group_by(area_curso, renda) %>%
     mutate(prop=n()/totalAreaCurso)
 
-exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>%        select(area_curso, renda, prop)
+exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>% select(area_curso, renda, prop)
 
 exatas <- unique(exatas)
 
