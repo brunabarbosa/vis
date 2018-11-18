@@ -3,7 +3,7 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 
 enade_2017_ufcg_str <- read_csv("enade_2017_ufcg-str.csv")
@@ -82,9 +82,17 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   group_by(area_curso) %>% 
   mutate(totalAreaCurso=n())
 
+enade_2017_ufcg_str <- enade_2017_ufcg_str %>% 
+  group_by(renda) %>% 
+  mutate(totaRenda=n())
+
 enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
     group_by(area_curso, renda) %>%
     mutate(prop=(n()/totalAreaCurso))
+
+enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
+    group_by(renda, horas_estudo) %>%
+    mutate(propRenda=(n()/totaRenda * 100))
 
 exatas <- enade_2017_ufcg_str_prop %>% filter(area_curso == "EXATAS") %>% select(area_curso, renda, prop)
 
