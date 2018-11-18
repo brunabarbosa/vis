@@ -90,7 +90,7 @@ enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
     group_by(area_curso, renda) %>%
     mutate(prop=(n()/totalAreaCurso))
 
-enade_2017_ufcg_str_prop <- enade_2017_ufcg_str %>%
+enade_2017_ufcg_str_prop <- enade_2017_ufcg_str_prop %>%
     group_by(renda, horas_estudo) %>%
     mutate(propRenda=(n()/totaRenda * 100))
 
