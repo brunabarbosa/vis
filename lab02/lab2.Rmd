@@ -104,6 +104,7 @@ cursos_renda_prop <- cursos_renda_prop %>%
   arrange(area_curso, renda, prop)
 
 write.csv(enade_2017_ufcg_str, file = "enade_2017_ufcg_str.csv")
+write.csv(enade_2017_ufcg_str_prop, file = "enade_2017_ufcg_str_prop.csv")
 write.csv(cursos_renda_prop, file = "cursos_renda_prop.csv")
 
 ```
