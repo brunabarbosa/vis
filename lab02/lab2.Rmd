@@ -25,18 +25,14 @@ enade_2017_ufcg_str <- enade_2017_ufcg_str %>% filter(!is.na(renda)) %>%
 #colnames(enade_2017_ufcg_str)[colnames(enade_2017_ufcg_str)=="Quantas horas por semana, aproximadamente, você dedicou aos estudos, excetuando as horas de aula?"] <- "horas_estudo"
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "Nenhuma, apenas assisto as aulas", 0, horas_estudo)) %>% 
-  mutate(horas_estudo = ifelse(horas_estudo == "De uma a tres", 1, horas_estudo)) %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "De quatro a sete", 4, horas_estudo)) %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "De oito a doze", 8, horas_estudo)) %>%
-  mutate(horas_estudo = ifelse(horas_estudo == "Mais de doze", 12, horas_estudo))
-
-enade_2017_ufcg_str$horas_estudo <- as.numeric(enade_2017_ufcg_str$horas_estudo)  
+  mutate(horas_estudo = ifelse(horas_estudo == "Nenhuma, apenas assisto as aulas", "0", horas_estudo)) %>% 
+  mutate(horas_estudo = ifelse(horas_estudo == "De uma a tres", "1-3", horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "De quatro a sete", "4-7", horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "De oito a doze", "8-11", horas_estudo)) %>%
+  mutate(horas_estudo = ifelse(horas_estudo == "Mais de doze", "12+", horas_estudo))
 
 unique(enade_2017_ufcg_str$horas_estudo)
 unique(enade_2017_ufcg_str$NOME_CURSO)
-
-enade_2017_ufcg_str$horas_estudo <- sort(enade_2017_ufcg_str$horas_estudo)
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(renda = ifelse(renda == "Ate 1,5 salario minimo (ate R$ 1405,50).", "A - (ate R$ 1.405,50)", renda)) %>% 
