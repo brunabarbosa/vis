@@ -36,7 +36,7 @@ enade_2017_ufcg_str$horas_estudo <- as.numeric(enade_2017_ufcg_str$horas_estudo)
 unique(enade_2017_ufcg_str$horas_estudo)
 unique(enade_2017_ufcg_str$NOME_CURSO)
 
-#enade_2017_ufcg_str <- order(enade_2017_ufcg_str$horas_estudo)
+enade_2017_ufcg_str$horas_estudo <- sort(enade_2017_ufcg_str$horas_estudo)
 
 enade_2017_ufcg_str <- enade_2017_ufcg_str %>%
   mutate(renda = ifelse(renda == "Ate 1,5 salario minimo (ate R$ 1405,50).", "A - (ate R$ 1.405,50)", renda)) %>% 
